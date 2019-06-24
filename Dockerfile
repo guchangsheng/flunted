@@ -27,6 +27,8 @@ COPY clean-apt /usr/bin
 COPY clean-install /usr/bin
 COPY Gemfile /Gemfile
 
+RUN sed -i "s@http://deb.debian.org@http://mirrors.aliyun.com@g" /etc/apt/sources.list && rm -Rf /var/lib/apt/lists/* && apt-get update && cat /etc/apt/sources.list
+
 # 1. Install & configure dependencies.
 # 2. Install fluentd via ruby.
 # 3. Remove build dependencies.
