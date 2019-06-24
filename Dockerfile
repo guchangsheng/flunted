@@ -27,17 +27,17 @@ COPY clean-apt /usr/bin
 COPY clean-install /usr/bin
 COPY Gemfile /Gemfile
 
-RUN sed -i "s@http://deb.debian.org@http://mirrors.aliyun.com@g" /etc/apt/sources.list && rm -Rf /var/lib/apt/lists/* && apt-get update && cat /etc/apt/sources.list
+#RUN sed -i "s@http://deb.debian.org@http://mirrors.aliyun.com@g" /etc/apt/sources.list && rm -Rf /var/lib/apt/lists/* && apt-get update && cat /etc/apt/sources.list
 
 # 1. Install & configure dependencies.
 # 2. Install fluentd via ruby.
 # 3. Remove build dependencies.
 # 4. Cleanup leftover caches & files.
 RUN BUILD_DEPS="make gcc g++ libc6-dev ruby-dev libffi-dev" \
-    && clean-install $BUILD_DEPS \
-                     ca-certificates \
-                     libjemalloc1 \
-                     ruby \
+    #&& clean-install $BUILD_DEPS \
+     #                ca-certificates \
+      #               libjemalloc1 \
+       #              ruby \
     && echo 'gem: --no-document' >> /etc/gemrc \
     && gem install --file Gemfile \
     && apt-get purge -y --auto-remove \
