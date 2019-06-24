@@ -51,7 +51,7 @@ COPY run.sh /run.sh
 
 # Expose prometheus metrics.
 EXPOSE 80
-
+#1
 ENV LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.1
 
 # Start Fluentd to pick up our config that watches Docker container logs.
